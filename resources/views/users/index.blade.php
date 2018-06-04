@@ -25,6 +25,7 @@
                                     <td>Nome</td>
                                     <td class="text-center">E-mail</td>
                                     <td class="text-center">Telefone</td>
+                                    <td class="text-center">PicPay</td>
                                     <td class="text-center">Última contribuição</td>
                                     <td class="text-center">Tipo</td>
                                     <td class="text-center">Status</td>
@@ -36,8 +37,9 @@
                                         <td><a href="{{ route('users.show', $user->uuid) }}">{{ $user->name }}</a></td>
                                         <td class="text-center">{{ $user->email }}</td>
                                         <td class="text-center">{{ $user->phone }}</td>
+                                        <td class="text-center">{{ $user->picpay }}</td>
                                         <td class="text-center">{{ \App\Helpers\Functions::diffDateContri($user->dataDaUltimaContribuicao) }}</td>
-                                        <td class="text-center">{{ ucfirst($user->type) }}</td>
+                                        <td class="text-center">{!! \App\Helpers\Functions::typeUser($user->type) !!}</td>
                                         <td class="text-center">{!! \App\Helpers\Functions::statusUsers($user->status) !!}</td>
                                     </tr>
                                 @endforeach

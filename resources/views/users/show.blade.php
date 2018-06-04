@@ -57,6 +57,7 @@
                         <p><strong>Nome:</strong> {{ $user->name }}</p>
                         <p><strong>E-mail:</strong> {{ $user->email }}</p>
                         <p><strong>Telefone:</strong> {{ $user->phone }}</p>
+                        <p><strong>PicPay:</strong> {{ $user->picpay }}</p>
                         <p><strong>Tipo:</strong> {{ ucfirst($user->type) }}</p>
                         <p><strong>Status:</strong> {!! \App\Helpers\Functions::statusUsers($user->status) !!}</p>
                         <p><strong>Última contribuição:</strong> {{ is_a($user->dataDaUltimaContribuicao, Carbon\Carbon::class) ? $user->dataDaUltimaContribuicao->format('d/m/Y') : 'Sem contribuições' }}</p>

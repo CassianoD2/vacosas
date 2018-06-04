@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Schema;
 use App\Contribuicao;
 use App\Observables\ContribuicaoObservable;
 use App\User;
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
 
         Contribuicao::observe(ContribuicaoObservable::class);
 
+        Schema::defaultStringLength(191);
     }
 
     /**

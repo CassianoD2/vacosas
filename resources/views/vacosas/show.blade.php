@@ -47,6 +47,9 @@
                             <small>[<a href="{{ $vacosa->url }}" target="_blank">site</a>]</small>
                         </p>
                         <p><strong>Valor:</strong> R$ {{ $vacosa->valor }}</p>
+                        @if ($vacosa->organizador->picpay)
+                            <p><strong>PicPay:</strong> {{ $vacosa->organizador->picpay }}</p>
+                        @endif
                         <p><strong>Total arrecadado:</strong> R$ {{ $vacosa->totalArrecadado }}</p>
                         <p><strong>Faltando:</strong> R$ {{ $vacosa->valor - $vacosa->totalArrecadado }}</p>
                         <p><strong>Status:</strong> {!! \App\Helpers\Functions::status($vacosa->status) !!}</p>
@@ -68,11 +71,18 @@
                     <div class="card-body">
                         <ul>
                             @foreach($vacosa->contribuicoes as $contribuicao)
-                                <li>{{ $contribuicao->participante->name }} -
-                                    R$ {{ $contribuicao->valor }} @if ((Auth::user()->role == 'admin' || $vacosa->organizador->id == Auth::user()->id) && $vacosa->status=="aberta")
+                                <li>{{ $contribuicao->participante->name }}
+                                    @if ($contribuicao->participante->picpay)
+                                        ({{ $contribuicao->participante->picpay  }})
+                                    @endif
+                                    -
+                                    R$ {{ $contribuicao->valor }}
+                                    @if ((Auth::user()->role == 'admin' || $vacosa->organizador->id == Auth::user()->id) && $vacosa->status=="aberta")
                                         <a href="#" data-toggle="modal" data-target="#mdModal"
-                                           data-url="{{ route('contribuicoes.confirmDestroy', [$vacosa, $contribuicao]) }}"><i
-                                                    class="fa fa-times text-danger"></i></a> @endif</li>
+                                           data-url="{{ route('contribuicoes.confirmDestroy', [$vacosa, $contribuicao]) }}">
+                                            <i class="fa fa-times text-danger"></i></a>
+                                    @endif
+                                </li>
                             @endforeach
                         </ul>
                     </div>

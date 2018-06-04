@@ -48,11 +48,16 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         //
-    } /**
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
-     * @param  User  $user
+     * @param  User $user
+     *
      * @return \Illuminate\Http\Response
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy($uuid)
     {
